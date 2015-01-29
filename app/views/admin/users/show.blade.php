@@ -18,25 +18,19 @@
                 <td>{{$user->full_name}}</td>
                 <td>{{$user->email}}</td>
                 <td>
-                    <a href="{{ route('admin.users.destroy', $user->id) }}" data-toggle="tooltip" data-placement="top"
-                       title="Eliminar" class="glyphicon glyphicon-remove"></a>
+                <a href="#" data-id="{{ $user->id }}" class="btn btn-danger btn-delete">Eliminar</a>
+{{ Form::open(array('route' => array('admin.users.destroy', 'USER_ID'), 'method' => 'DELETE', 'role' => 'form', 'id' => 'form-delete')) }}
+{{ Form::close() }}
                 </td>
             </tr>
         
     </table>
 
-
-<p>Full name: {{ $user->full_name }}</p>
-<p>Email: {{ $user->email }}</p>
-
 <p>
-  <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">
-    Editar
-  </a>    
-</p>
 
-{{ Form::model($user, array('route' => array('admin.users.destroy', $user->id), 'method' => 'DELETE'), array('role' => 'form')) }}
-  {{ Form::submit('Eliminar usuario', array('class' => 'btn btn-danger')) }}
-{{ Form::close() }}
+  <a href="{{ route('admin.users.index') }}" class="btn btn-success">
+    Retornar
+  </a>
+</p>
 
 @stop
