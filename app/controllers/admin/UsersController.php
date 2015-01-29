@@ -29,7 +29,7 @@ class Admin_UsersController extends \BaseController {
 
 //var_dump($_POST);exit;
 		$user = new User;
-		
+
 		//return View::make('admin/users/form');
 
 		//var_dump($user);exit;
@@ -74,18 +74,16 @@ class Admin_UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
-		//
-		$user = User::find($id);
-		if(is_null($user)){
-			App::abort(404);
-		}else{
+   
 
-			return View::make('admin/users/form')->with('user', $user);
-		}
-
-	}
+   public function show($id)
+   {
+       $user = User::find($id);
+        
+        if (is_null($user)) App::abort(404);
+        
+      return View::make('admin/users/show', array('user' => $user));
+   }
 
 
 	/**
@@ -152,6 +150,7 @@ class Admin_UsersController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+		var_dump($id);exit;
 		      return 'Esta es la lista de usuarios';
 	}
 

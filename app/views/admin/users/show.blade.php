@@ -1,10 +1,11 @@
-@extends('admin/layout')
-@section('title') Lista de Usuarios @stop
-@section('content')
-    <h1>Usuario</h1>
-<p>
-    <a href="{{ route('admin.users.create' )}}" class="btn btn-info"> Desea Crear otro usuario</a>
-</p>
+@extends ('admin/layout')
+
+@section ('title') User {{ $user->full_name }} @stop
+
+@section ('content')
+
+<h2>User #{{ $user->id }}</h2>
+
     <table class="table table-striped table-condensed table-bordered table-responsive text-center">
         <tr>
             <th class="text-center">Full name</th>
@@ -12,19 +13,30 @@
             <th class="text-center">Acciones</th>
         </tr>
 
-        @foreach ($users as $user)
+        
             <tr>
                 <td>{{$user->full_name}}</td>
                 <td>{{$user->email}}</td>
                 <td>
-                    <a href="{{ route('admin.users.show', $user->id) }}" data-toggle="tooltip" data-placement="top"
-                       title="Ver" class="glyphicon glyphicon-eye-open" ></a>
-                    <a href="{{ route('admin.users.edit', $user->id) }}" data-toggle="tooltip" data-placement="top"
-                       title="Editar" class="glyphicon glyphicon-wrench"></a>
+                    <a href="{{ route('admin.users.destroy', $user->id) }}" data-toggle="tooltip" data-placement="top"
+                       title="Eliminar" class="glyphicon glyphicon-remove"></a>
                 </td>
             </tr>
-        @endforeach
+        
     </table>
-    {{ $users->links() }}
+
+
+<p>Full name: {{ $user->full_name }}</p>
+<p>Email: {{ $user->email }}</p>
+
+<p>
+  <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">
+    Editar
+  </a>    
+</p>
+
+{{ Form::model($user, array('route' => array('admin.users.destroy', $user->id), 'method' => 'DELETE'), array('role' => 'form')) }}
+  {{ Form::submit('Eliminar usuario', array('class' => 'btn btn-danger')) }}
+{{ Form::close() }}
 
 @stop
