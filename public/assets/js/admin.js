@@ -15,9 +15,8 @@ $(window).ready(function() {
                   row.delay(1000).remove();
                   bootbox.alert(result.msg);
                }, 1000);
-               var route = "http://"+window.location.hostname+"/admin/users/"; //Host Route
-               window.setTimeout(function() { //Redirect Host
-                  window.location.href = route;
+               window.setTimeout(function() { //Redirect route admin/users
+                  window.location.href = "http://"+window.location.hostname+"/admin/users/";
                }, 3500);
             } else {
             	alert ('El registro ‘  + result.id + ‘ no pudo ser eliminado');
