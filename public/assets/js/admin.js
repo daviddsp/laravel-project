@@ -15,8 +15,10 @@ $(window).ready(function() {
                   row.delay(1000).remove();
                   bootbox.alert(result.msg);
                }, 1000);
-               setTimeout ("window.location='http://local.pruebas.com/admin/users/'", 3000);
-               //window.location = "http://local.pruebas.com/admin/users/";                
+               var route = "http://"+window.location.hostname+"/admin/users/"; //Host Route
+               window.setTimeout(function() { //Redirect Host
+                  window.location.href = route;
+               }, 3500);
             } else {
             	alert ('El registro ‘  + result.id + ‘ no pudo ser eliminado');
       			row.show();
